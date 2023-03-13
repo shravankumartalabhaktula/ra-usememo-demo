@@ -1,0 +1,31 @@
+export function createTodos() {
+  const todos = [];
+  for (let i = 0; i < 500; i++) {
+    todos.push({
+      id: i,
+      text: 'Todo ' + (i + 1),
+      completed: Math.random() > 0.5,
+    });
+  }
+  return todos;
+}
+
+export function filterTodos(todos, tab) {
+  console.log(
+    'Slow Filtering ' + todos.length + ' todos for "' + tab + '" tab.'
+  );
+  let startTime = performance.now();
+  while (performance.now() - startTime < 500) {
+    // This will simulate slow performace artificially.
+  }
+  return todos.filter((todo) => {
+    if (tab === 'all') {
+      return true;
+    } else if (tab === 'active') {
+      return !todo.completed;
+    } else if (tab === 'completed') {
+      return todo.completed;
+    }
+    return true;
+  });
+}
